@@ -1,5 +1,7 @@
 package oslomet.webprog.ukeoppgaver.repository;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
+import net.bytebuddy.description.type.TypeDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -42,6 +44,25 @@ public class VehicleRepository {
         } catch (Exception e) {
             System.out.println("Noe gikk glat i repo sin getCars");
             return null;
+        }
+    }
+
+    public Registration getRegistration(String id) {
+        try {
+            return db.query("select * from Registrations where id=?", new BeanPropertyRowMapper<>(Registration.class), id).get(0);
+        } catch (Exception e) {
+            System.out.println("Noe galt i getRegistration()");
+            return null;
+        }
+    }
+
+    public void updateOneRegistration(Registration registration) {
+        try {
+            db.update("update Registrations set ssn=?, name=?, address=?, characteristics=?, brand=?, type=? where id =?",
+                    registration.getSsn(), registration.getName(), registration.getAddress(),
+                    registration.getCharacteristics(), registration.getBrand(), registration.getType(), registration.getId());
+        } catch (Exception e) {
+            System.out.println("Noe galt i updateOneRegistration()");
         }
     }
 

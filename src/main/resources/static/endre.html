@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,13 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script type="module" src="index.js"></script>
+    <script type="module" src="endre.js"></script>
     <style>
         td {
             vertical-align: unset !important;
         }
     </style>
 </head>
-<body>
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -46,15 +47,7 @@
                 </div>
             </form>
 
-            <button class="btn btn-primary" id="register">Registrer</button>
-            <button class="btn btn-danger" id="deleteAll">Slett alle</button>
-
-        </div>
-
-        <div class="col-md-8">
-            <h3>Alle bilene</h3>
-
-            <div class="table-response" id="list"></div>
+            <button class="btn btn-primary" id="change">Endre</button>
 
         </div>
     </div>

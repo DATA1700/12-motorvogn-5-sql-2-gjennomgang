@@ -1,5 +1,5 @@
 $(() => {
-    $("#register").click(() => {
+    $("#register").on('click', () => {
         const ssn = $("#ssn");
         const name = $("#name");
         const address = $("#address");
@@ -17,7 +17,7 @@ $(() => {
         }
 
         if (inputval(registration)) {
-            $.post("/api", registration, () => fetchRegistrations())
+            $.post("/api/add", registration, () => fetchRegistrations())
 
             ssn.val("")
             name.val("")
@@ -51,12 +51,14 @@ const formatList = list => {
     let msg = "";
 
     if (list.length > 0) {
-        msg += "<table class='table table-striped'><tr><th>Personnr</th><th>Navn</th><th>Adresse</th><th>Kjennetegn</th><th>Merke</th><th>Type</th><th></th></tr>"
+        msg += "<table class='table table-striped'><tr><th>Personnr</th><th>Navn</th><th>Adresse</th><th>Kjennetegn</th><th>Merke</th><th>Type</th><th></th><th></th></tr>"
 
         for (let registration of list) {
             msg += "<tr><td>" + registration.ssn + "</td><td>" + registration.name + "</td><td>" + registration.address + "</td>" +
-                "<td>" + registration.characteristics + "</td><td>" + registration.brand + "</td><td>" + registration.type +
-                "</td><td><button class='btn btn-danger' value='" + registration.id + "' name='tableDeleteOne'>Slett</button></td></tr>"
+                "<td>" + registration.characteristics + "</td><td>" + registration.brand + "</td><td>" + registration.type + "</td>" +
+                "<td><a class='btn btn-primary' href='/endre.html?" + registration.id + "'>Endre</a></td>" +
+                "<td><button class='btn btn-danger' value='" + registration.id + "' name='tableDeleteOne'>Slett</button></td>" +
+                "</tr>"
         }
 
         msg += "</table>";
